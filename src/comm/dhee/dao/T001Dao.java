@@ -56,7 +56,7 @@ public class T001Dao {
 		Connection connection = DBConnection.getConnection();
 		T001 t001 = new T001();
 
-		String sql = "select t00103,t00105,t00107 from t001 where t00101=?";
+		String sql = "select t00103,t00105,t00107,t00106 from t001 where t00101=?";
 		PreparedStatement ps = connection.prepareStatement(sql);
 		ps.setString(1, t00101);
 
@@ -65,6 +65,7 @@ public class T001Dao {
 			t001.setT00103(rs.getDate(1));
 			t001.setT00105(rs.getString(2));
 			t001.setT00107(rs.getString(3));
+			t001.setT00106(rs.getString(4));
 		}
 
 		DBConnection.closeConnection();

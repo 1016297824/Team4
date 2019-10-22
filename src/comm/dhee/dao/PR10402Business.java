@@ -20,12 +20,13 @@ public class PR10402Business {
 
 			dataList = pr10402Dao.getSumList();
 
-			conn.commit();
+			//conn.commit();
 		} catch (SQLException e) {
 
-			conn.rollback();
+			//conn.rollback();
 			throw e;
 		} finally {
+			DBConnection.closeConnection();
 		}
 		return dataList;
 	}
@@ -43,12 +44,13 @@ public class PR10402Business {
 
 			dataList = pr10402Dao.getIdList();
 
-			conn.commit();
+			//conn.commit();
 		} catch (SQLException e) {
 
-			conn.rollback();
+			//conn.rollback();
 			throw e;
 		} finally {
+			DBConnection.closeConnection();
 		}
 		return dataList;
 	}

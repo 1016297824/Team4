@@ -49,7 +49,7 @@ public class PR10101Controller {
 
 	@Autowired
 	private T002Dao t002Dao;
-	
+
 	@Autowired
 	private ExcelResultDao excelResultDao;
 
@@ -194,7 +194,7 @@ public class PR10101Controller {
 		M001 m001 = new M001();
 		M003 m003 = new M003();
 		T001 t001 = new T001();
-		List<ExcelResult> lexcelResult=new ArrayList<ExcelResult>();
+		List<ExcelResult> lexcelResult = new ArrayList<ExcelResult>();
 
 		String orderId = (String) request.getSession().getAttribute("orderId");
 		map.put("orderId", orderId);
@@ -202,16 +202,17 @@ public class PR10101Controller {
 		t001 = t001Dao.selectT001(orderId);
 		Date deliveryDay = t001.getT00103();
 		map.put("deliveryDay", deliveryDay);
-		
+		map.put("location", t001.getT00106());
+
 		m001 = m001Dao.selectExcelCustomerById(t001.getT00105());
-		map.put("customer",m001);
+		map.put("customer", m001);
 		
 		m003 = m003Dao.selectM003ByM00301(t001.getT00107());
 		map.put("undertakerName", m003.getM00302());
 
-		lexcelResult=excelResultDao.selectExcelResult(orderId);
+		lexcelResult = excelResultDao.selectExcelResult(orderId);
 		map.put("lexcelResult", lexcelResult);
-		
+
 		ExcelUtils.exportToExcel(request, response, "受注商品明細.xls", "PR10101.xls", map);
 	}
 }

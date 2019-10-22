@@ -13,7 +13,7 @@ import comm.dhee.util.DBConnection;
 public class PR20101Dao {
 
 	// 查询所有受注コード
-	public  List<PR20101> selectAllid(String t00101) throws SQLException {
+	public List<PR20101> selectAllid(String t00101) throws SQLException {
 
 		List<PR20101> allidlist = new ArrayList<PR20101>();
 		Connection connection = DBConnection.getConnection();
@@ -31,11 +31,11 @@ public class PR20101Dao {
 				allidlist.add(allid);
 			}
 
-			DBConnection.closeConnection();
-
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 
 		return allidlist;
@@ -43,7 +43,7 @@ public class PR20101Dao {
 	}
 
 	// 检索按钮
-	public  List<PR20101> pr20101(String t00101) throws SQLException {
+	public List<PR20101> pr20101(String t00101) throws SQLException {
 
 		List<PR20101> pr20101list = new ArrayList<PR20101>();
 
@@ -68,18 +68,18 @@ public class PR20101Dao {
 				pr20101list.add(p);
 			}
 
-			DBConnection.closeConnection();
-
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 
 		return pr20101list;
 	}
 
 	// 更新日期
-	public  boolean upddate(String pr20101date, String t00101) {
+	public boolean upddate(String pr20101date, String t00101) {
 
 		Connection conn = DBConnection.getConnection();
 		String sql = "update t001 set t00104 =to_date(?,'yyyy-mm-dd') where t00101 = ?";
@@ -94,16 +94,16 @@ public class PR20101Dao {
 				return true;
 			}
 
-			DBConnection.closeConnection();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 		return false;
 	}
 
 	// 更新残高
-	public  boolean updcangao(String t00101) {
+	public boolean updcangao(String t00101) {
 
 		Connection conn = DBConnection.getConnection();
 		String sql = "update m001 set m00112 = m00112 + ( select sum(t00203*t00204)*1.04 from t002 where t00201 = ?) "
@@ -119,16 +119,17 @@ public class PR20101Dao {
 			if (ps.executeUpdate() > 0) {
 				return true;
 			}
-			DBConnection.closeConnection();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 		return false;
 	}
 
 	// 查询登录后的残高
-	public  List<PR20101> pr20101login(String t00101) throws SQLException {
+	public List<PR20101> pr20101login(String t00101) throws SQLException {
 
 		List<PR20101> pr20101list1 = new ArrayList<PR20101>();
 
@@ -146,15 +147,14 @@ public class PR20101Dao {
 				pr20101list1.add(q);
 			}
 
-			DBConnection.closeConnection();
-
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 
 		return pr20101list1;
 	}
-
 
 }

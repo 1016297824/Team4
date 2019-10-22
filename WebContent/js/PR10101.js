@@ -108,6 +108,7 @@ $("#aCustomer").click(
 					var page = Math.ceil(len / 5);
 					var li = $("#pageCustomer ul li");
 					var a = $("#pageCustomer ul a");
+					a.css('display', 'block');
 					if (page <= 5) {
 						var n = 1;
 						var end = 5 * n;
@@ -195,6 +196,7 @@ $('#selectCustomer').click(
 					var page = Math.ceil(len / 5);
 					var li = $("#pageCustomer ul li");
 					var a = $("#pageCustomer ul a");
+					a.css('display', 'block');
 					if (page <= 5) {
 						var n = 1;
 						var end = 5 * n;
@@ -281,6 +283,7 @@ $("#selectAllProdects").click(
 					var page = Math.ceil(len / 5);
 					var li = $("#pageProduct ul li");
 					var a = $("#pageProduct ul a");
+					a.css('display', 'block');
 					if (page <= 5) {
 						var n = 1;
 						var end = 5 * n;
@@ -375,6 +378,7 @@ $("#selectProducts").click(
 					var page = Math.ceil(len / 5);
 					var li = $("#pageProduct ul li");
 					var a = $("#pageProduct ul a");
+					a.css('display', 'block');
 					if (page <= 5) {
 						var n = 1;
 						var end = 5 * n;
@@ -481,8 +485,14 @@ $("#productAdd").click(
 		function() {
 			var hiddenNowProductAmount = Number($("#hiddenNowProductAmount").val());
 			var productAmount = Number($("#productAmount").val());
+			var productId = $("#productId").val();
 			// alert(productAmount);
 			var ok = 1;
+			if (productId == "") {
+				ok = 0;
+				alert("商品を選んでください");
+			}
+
 			if (productAmount == 0) {
 				ok = 0;
 				alert("売上数量を入力してください");
@@ -630,14 +640,11 @@ function issuePR10101() {
 					alert(data.message);
 				}
 				if (data.result) {
-					var tr = $("#injectionTable tbody tr");
-					for (var i = 0; i < tr.length; i++) {
-						if (tr[i].cells[7].firstChild.checked) {
-							var last = Number(tr[i].cells[5].innerHTML) - Number(tr[i].cells[6].innerHTML);
-							tr[i].cells[5].innerHTML = last;
-						}
+					$("#injectionTable tbody").empty();
+					let con = confirm('Excelテーブルを生成しますか');
+					if (con == true) {
+						window.location.href = "issueExcel.action";
 					}
-					window.location.href = "issueExcel.action";
 				}
 			}
 		});

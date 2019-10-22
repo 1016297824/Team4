@@ -31,11 +31,11 @@ public class PR20301Dao {
 				allidlist.add(allid);
 			}
 
-			DBConnection.closeConnection();
-
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 
 		return allidlist;
@@ -68,11 +68,11 @@ public class PR20301Dao {
 				selpr20301list.add(a);
 			}
 
-			DBConnection.closeConnection();
-
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 
 		return selpr20301list;
@@ -97,10 +97,10 @@ public class PR20301Dao {
 				selalllist.add(b);
 			}
 
-			DBConnection.closeConnection();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 
 		return selalllist;
@@ -126,10 +126,10 @@ public class PR20301Dao {
 				selonelist.add(c);
 			}
 
-			DBConnection.closeConnection();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 
 		return selonelist;
@@ -148,10 +148,11 @@ public class PR20301Dao {
 			if (ps.executeUpdate() > 0) {
 				return true;
 			}
-			DBConnection.closeConnection();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 
 		return false;
@@ -171,10 +172,11 @@ public class PR20301Dao {
 			if (ps.executeUpdate() > 0) {
 				return true;
 			}
-			DBConnection.closeConnection();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 
 		return false;
@@ -195,10 +197,11 @@ public class PR20301Dao {
 			if (ps.executeUpdate() > 0) {
 				return true;
 			}
-			DBConnection.closeConnection();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 		return false;
 	}
@@ -222,11 +225,11 @@ public class PR20301Dao {
 				cangaolist.add(d);
 			}
 
-			DBConnection.closeConnection();
-
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 
 		return cangaolist;

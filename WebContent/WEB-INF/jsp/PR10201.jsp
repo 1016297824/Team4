@@ -127,38 +127,46 @@
 							</div>
 							<div class="panel-body">
 								<table class="table table-bordered" id="mytable">
+									<thead>
+										<tr>
+											<th style="text-align: center;">商品コード</th>
+											<th style="text-align: center;">商品名</th>
+											<th style="text-align: center;">受注コード</th>
+											<th style="text-align: center;">出庫数量</th>
+											<th style="text-align: center;">合計出庫数量</th>
+										</tr>
+									</thead>
 
-									<tr>
-										<th style="text-align: center;">商品コード</th>
-										<th style="text-align: center;">商品名</th>
-										<th style="text-align: center;">受注コード</th>
-										<th style="text-align: center;">出庫数量</th>
-										<th style="text-align: center;">合計出庫数量</th>
-									</tr>
 
 									<%-- <c:forEach items="${ m002list}" var="m002"> --%>
 
+									<tbody>
+
+										<%
+											List<M002PR10201> m002list = (ArrayList<M002PR10201>) request.getAttribute("m002list");
+										%>
+										<%
+											if (m002list != null) {
+												for (M002PR10201 m002 : m002list) {
+										%>
+
+										<tr>
+											<td style="text-align: center;"><%=m002.getM00201()%></td>
+											<td
+												style="text-align: left; vertical-align: middle !important;"><%=m002.getM00202()%></td>
+											<td style="text-align: center;"><%=m002.getT00101()%></td>
+											<td style="text-align: center;"><%=m002.getT00203()%></td>
+											<td
+												style="text-align: right; vertical-align: middle !important;"><%=m002.getSum()%></td>
+										</tr>
 
 
-									<%
-										List<M002PR10201> m002list = (ArrayList<M002PR10201>) request.getAttribute("m002list");
-									%>
-									<%
-										if (m002list != null) {
-											for (M002PR10201 m002 : m002list) {
-									%>
-									<tr>
-										<td style="text-align: center;"><%=m002.getM00201()%></td>
-										<td style="text-align: left;" class="hebing"><%=m002.getM00202()%></td>
-										<td style="text-align: center;"><%=m002.getT00101()%></td>
-										<td style="text-align: center;"><%=m002.getT00203()%></td>
-										<td style="text-align: right;" class="hebing1"><%=m002.getSum()%></td>
-									</tr>
-									<%-- </c:forEach> --%>
-									<%
-										}
-										}
-									%>
+										<%-- </c:forEach> --%>
+										<%
+											}
+											}
+										%>
+									</tbody>
 								</table>
 
 								<p id="p1" style="color: red;">${message }</p>
@@ -213,28 +221,49 @@
 				}
 			});
 		});
-	</script>
-	<script type="text/javascript">
-	$(function() {
 
-		$('.hebing1').each(function(index, element) {
+		$(function() {
 
-			if (!$(this).hasClass('hide')) {
+			$('.hebing1').each(function(index, element) {
 
-				var next = $(this).parent('tr').next('tr').children('.hebing1');
+				if (!$(this).hasClass('hide')) {
 
-				$(this).attr('rowspan', 1);
-				$(this).attr('style', "vertical-align: middle !important;text-align: center;");
-				while ($(this).text() == next.text()) {
-					$(this).attr('rowspan', parseInt($(this).attr('rowspan')) + 1);
-					next.hide();
-					next.addClass('hide');
-					next = next.parent('tr').next('tr').children('.hebing1');
+					var next = $(this).parent('tr').next('tr').children('.hebing1');
 
+					$(this).attr('rowspan', 1);
+					$(this).attr('style', "vertical-align: middle !important;text-align: center;");
+					while ($(this).text() == next.text()) {
+						$(this).attr('rowspan', parseInt($(this).attr('rowspan')) + 1);
+						next.hide();
+						next.addClass('hide');
+						next = next.parent('tr').next('tr').children('.hebing1');
+
+					}
+				}
+			});
+		});
+
+		$(function() {
+			var tr = $("#mytable tbody tr");
+			var n = 1;
+			var pid = tr[0].cells[0].innerHTML;
+			for (var i = 1; i < tr.length; i++) {
+				if (pid == tr[i].cells[0].innerHTML) {
+					n++;
+					tr[i].cells[1].remove();
+					tr[i].cells[3].remove();
+				} else {
+					tr[i - n].cells[1].rowSpan = '' + n;
+					tr[i - n].cells[4].rowSpan = '' + n;
+					n = 1;
+					pid = tr[i].cells[0].innerHTML;
 				}
 			}
+			if (n > 1) {
+				tr[i - n].cells[1].rowSpan = '' + n;
+				tr[i - n].cells[4].rowSpan = '' + n;
+			}
 		});
-	});
 	</script>
 </body>
 </html>

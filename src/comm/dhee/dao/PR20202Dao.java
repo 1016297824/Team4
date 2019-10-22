@@ -25,7 +25,7 @@ public class PR20202Dao {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, id);
 			ResultSet rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				PR20202 = new PR20202();
 				PR20202.setId(rs.getString(1));// 顾客id
@@ -37,8 +37,10 @@ public class PR20202Dao {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
-		DBConnection.closeConnection();
+
 		return PR20202;
 	}
 
@@ -68,13 +70,15 @@ public class PR20202Dao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 
 		return list;
 	}
 
-	public int getRequestindexNext() {//获取请求书番号+1
-		int index=1;
+	public int getRequestindexNext() {// 获取请求书番号+1
+		int index = 1;
 		Connection conn = DBConnection.getConnection();
 		String sql = "select lpad(nvl(Max(T00301),0)+1,3,'0') from t003";
 		try {
@@ -86,12 +90,15 @@ public class PR20202Dao {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 
 		return index;
 	}
-	public int getRequestindex() {//获取当前请求书番号
-		int index=1;
+
+	public int getRequestindex() {// 获取当前请求书番号
+		int index = 1;
 		Connection conn = DBConnection.getConnection();
 		String sql = "select lpad(nvl(Max(T00301),0),3,'0') from t003";
 		try {
@@ -103,30 +110,34 @@ public class PR20202Dao {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 
 		return index;
 	}
-	
-	
-	public Date getRequestDate(String id) {//获取请求日期
-		Date date=null;
+
+	public Date getRequestDate(String id) {// 获取请求日期
+		Date date = null;
 		Connection conn = DBConnection.getConnection();
 		String sql = "select T00104 from t001 where t00105=?";
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			if (rs.next()) {
-				date=rs.getDate(1);
+				date = rs.getDate(1);
 			}
 			System.out.println(date);
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 		return date;
 	}
-	public void updateRequest(String id) {//更新T00108 请求书 番号
+
+	public void updateRequest(String id) {// 更新T00108 请求书 番号
 
 		int index = getRequestindex();
 		Connection conn = DBConnection.getConnection();
@@ -139,49 +150,54 @@ public class PR20202Dao {
 			commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 	}
-	
-	public void insertRequestTable(String date) {//插入T003请求书番号
-		 int index = getRequestindexNext();
+
+	public void insertRequestTable(String date) {// 插入T003请求书番号
+		int index = getRequestindexNext();
 		Connection conn = DBConnection.getConnection();
 		String sql = "insert into T003 values(?,to_date(?,'yyyy-mm-dd'),null)";
 		try {
-			
-			PreparedStatement ps =conn.prepareStatement(sql);
+
+			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, index);
 			ps.setString(2, date);
 			ResultSet rs = ps.executeQuery();
 			commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 	}
-	
-	public boolean cheak(String id) {//查询是否T00108 是否已经存在
-		
+
+	public boolean cheak(String id) {// 查询是否T00108 是否已经存在
+
 		Connection conn = DBConnection.getConnection();
 		String sql = "select * from t001 where ? in (select Distinct(M00101) from M001,T001 where M001.M00101=T001.T00105 and t001.t00108 is null and t001.t00104 is not null)";
 		try {
-			PreparedStatement ps =conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, id);
 			ResultSet rs = ps.executeQuery();
-			if (rs.next()==false) {
+			if (rs.next() == false) {
 				System.out.println(rs.next());
 				return false;
-			}else{
+			} else {
 				System.out.println(rs.next());
 				return true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
-		
-		
-		
+
 		return true;
 	}
-	public void commit() {//提交
+
+	public void commit() {// 提交
 		Connection conn = DBConnection.getConnection();
 		String sql = "commit work";
 
@@ -191,8 +207,9 @@ public class PR20202Dao {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			DBConnection.closeConnection();
 		}
 
 	}
-
 }
