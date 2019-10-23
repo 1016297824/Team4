@@ -211,7 +211,7 @@
 									<th style="text-align: center;">請求書日付</th>
 									<th style="text-align: center;">請求額</th>
 									<th style="text-align: center;">
-										<input type="checkbox" name="checkbox" id="checkbox" />
+										<input type="checkbox" name="checkInjection" id="checkbox0" />
 									</th>
 								</tr>
 							</thead>
@@ -372,7 +372,8 @@
 								$("#table2 tbody").append(
 										'<tr>' + '<td style="text-align: center;">' + 1 + '</td>' + '<td style="text-align: center;">' + val.t00301 + '</td>'
 												+ '<td style="text-align: left;">' + val.t00302 + '</td>' + '<td style="text-align: right;">' + val.sumtm + '</td>'
-												+ '<td style="text-align: center;">' + '<input type="checkbox" name="checkbox1name" id="checkbox1" onclick="ck()"/>' + '</tr>');
+												+ '<td style="text-align: center;">'
+												+ '<input type="checkbox" name="checkInjection" id="checkbox1" onclick="ck()" onchange="checkChange2()"/>' + '</tr>');
 							});
 							if (data.m00101Message != null) {
 								$("#table1").empty();
@@ -835,6 +836,30 @@
 				}
 			}
 		});
+
+		$("#checkbox0").change(function() {
+			if ($("#checkbox0").get(0).checked) {
+				$("input[name='checkInjection']").prop("checked", true);
+			} else {
+				$("input[name='checkInjection']").prop("checked", false);
+			}
+		});
+
+		function checkChange2() {
+			var check = document.getElementsByName("checkInjection");
+			var n = 0;
+			for (var i = 1; i < check.length; i++) {
+				if (check[i].checked) {
+					n++;
+				}
+			}
+
+			if (n == check.length - 1) {
+				check[0].checked = true;
+			} else {
+				check[0].checked = false;
+			}
+		}
 	</script>
 
 </body>
