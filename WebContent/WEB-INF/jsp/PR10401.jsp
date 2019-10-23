@@ -82,7 +82,7 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"
 							aria-expanded="false">
 							<i class="glyphicon glyphicon-user"></i>
-							<span>DHEE</span>
+							<span>${userName }</span>
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
@@ -95,7 +95,7 @@
 				</ul>
 			</div>
 			<!-- Menu End -->
-			
+
 		</div>
 	</div>
 	<!-- Top End -->
@@ -114,7 +114,8 @@
 									</div>
 									<div class="col-md-6" align="right">
 										<button type="submit" class="btn btn-primary btn-sm"
-											data-toggle="modal" data-target="#goodsModal" onclick="window.location.href='aPR10402.action'">印刷プレビュー</button>
+											data-toggle="modal" data-target="#goodsModal"
+											onclick="window.location.href='aPR10402.action'">印刷プレビュー</button>
 									</div>
 								</div>
 							</div>

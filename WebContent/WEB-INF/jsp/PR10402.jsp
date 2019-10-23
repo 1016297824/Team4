@@ -80,7 +80,7 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"
 							aria-expanded="false">
 							<i class="glyphicon glyphicon-user"></i>
-							<span>DHEE</span>
+							<span>${userName }</span>
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
@@ -93,7 +93,7 @@
 				</ul>
 			</div>
 			<!-- Menu End -->
-			
+
 		</div>
 	</div>
 	<!-- Top End -->
@@ -107,9 +107,9 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<div class="row">
-										<div class="col-md-12" align="left">
-											<font style="font-size: 14px; line-height: 29px;">商品別受注実績月報</font>
-										</div>
+									<div class="col-md-12" align="left">
+										<font style="font-size: 14px; line-height: 29px;">商品別受注実績月報</font>
+									</div>
 								</div>
 							</div>
 

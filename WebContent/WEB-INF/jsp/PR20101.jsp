@@ -31,7 +31,8 @@
 		<div class="container">
 			<!-- Title Begin -->
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#"> <b>華信商会(株) 販売管理業務システム</b>
+				<a class="navbar-brand" href="#">
+					<b>華信商会(株) 販売管理業務システム</b>
 				</a>
 			</div>
 			<!-- Title End -->
@@ -39,35 +40,64 @@
 			<!-- Menu Begin -->
 			<div>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="aPR10101.action">首頁</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" aria-expanded="false"> <span>受注管理</span>
+					<li>
+						<a href="aPR10101.action">首頁</a>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"
+							aria-expanded="false">
+							<span>受注管理</span>
 							<span class="caret"></span>
-					</a>
+						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="aPR10101.action">受注入力</a></li>
-							<li><a href="aPR10201.action">商品別出庫表作成</a></li>
-							<li><a href="aPR10301.action">顧客別受注実績月報作成</a></li>
-							<li><a href="aPR10401.action">商品別受注実績月報作成</a></li>
-							<li><a href="aPR10501.action">在庫情報確認</a></li>
-						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" aria-expanded="false"> <span>売掛管理</span>
+							<li>
+								<a href="aPR10101.action">受注入力</a>
+							</li>
+							<li>
+								<a href="aPR10201.action">商品別出庫表作成</a>
+							</li>
+							<li>
+								<a href="aPR10301.action">顧客別受注実績月報作成</a>
+							</li>
+							<li>
+								<a href="aPR10401.action">商品別受注実績月報作成</a>
+							</li>
+							<li>
+								<a href="aPR10501.action">在庫情報確認</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"
+							aria-expanded="false">
+							<span>売掛管理</span>
 							<span class="caret"></span>
-					</a>
+						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="aPR20101.action">売掛登録</a></li>
-							<li><a href="aPR20201.action">代金請求</a></li>
-							<li><a href="aPR20301.action">入金登録</a></li>
-						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" aria-expanded="false"> <i
-							class="glyphicon glyphicon-user"></i> <span>${userName}</span> <span
-							class="caret"></span>
-					</a>
+							<li>
+								<a href="aPR20101.action">売掛登録</a>
+							</li>
+							<li>
+								<a href="aPR20201.action">代金請求</a>
+							</li>
+							<li>
+								<a href="aPR20301.action">入金登録</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"
+							aria-expanded="false">
+							<i class="glyphicon glyphicon-user"></i>
+							<span>${userName}</span>
+							<span class="caret"></span>
+						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="alogin.action">退出</a></li>
-						</ul></li>
+							<li>
+								<a href="alogin.action">退出</a>
+							</li>
+						</ul>
+					</li>
 					<li></li>
 				</ul>
 			</div>
@@ -103,9 +133,9 @@
 									<div class="row">
 										<div class="col-md-4">
 											<div class="input-group">
-												<span class="input-group-addon">受注コード</span> <input
-													type="text" class="form-control" name="t00101" id="t00101"
-													value="${t00101}">
+												<span class="input-group-addon">受注コード</span>
+												<input type="text" class="form-control" name="t00101"
+													id="t00101" value="${t00101}">
 											</div>
 											<br>
 											<p id="t00101Message" style="color: red;">${t00101Message }</p>
@@ -123,22 +153,34 @@
 												<td style="text-align: left; padding-left: 5PX;">${a.m00101}</td>
 											</tr>
 											<tr>
-												<td style="text-align: left; padding-left: 5PX;"><br>
-													顧客名 ：</td>
-												<td style="text-align: left; padding-left: 5PX;"><br>
-													${a.m00103}</td>
+												<td style="text-align: left; padding-left: 5PX;">
+													<br>
+													顧客名 ：
+												</td>
+												<td style="text-align: left; padding-left: 5PX;">
+													<br>
+													${a.m00103}
+												</td>
 											</tr>
 											<tr>
-												<td style="text-align: left; padding-left: 5PX;"><br>
-													売掛残高 ：</td>
-												<td style="text-align: left; padding-left: 5PX;"><br>
-													${a.m00112}</td>
+												<td style="text-align: left; padding-left: 5PX;">
+													<br>
+													売掛残高 ：
+												</td>
+												<td style="text-align: left; padding-left: 5PX;">
+													<br>
+													${a.m00112}
+												</td>
 											</tr>
 											<tr>
-												<td style="text-align: left; padding-left: 5PX;"><br>
-													売掛金 ：</td>
-												<td style="text-align: left; padding-left: 5PX;"><br>
-													${a.summoney}</td>
+												<td style="text-align: left; padding-left: 5PX;">
+													<br>
+													売掛金 ：
+												</td>
+												<td style="text-align: left; padding-left: 5PX;">
+													<br>
+													${a.summoney}
+												</td>
 											</tr>
 										</c:forEach>
 									</table>
@@ -170,12 +212,13 @@
 						<div class="row">
 							<div class="col-md-4">
 								<div class="input-group date form_date">
-									<span class="input-group-addon">納入日付（省略時今日）</span> <input
-										type="text" class="form-control" name="pr20101date"
+									<span class="input-group-addon">納入日付（省略時今日）</span>
+									<input type="text" class="form-control" name="pr20101date"
 										id="pr20101date"
 										value="<%=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())%>"
-										readonly> <span class="input-group-addon"> <span
-										class="glyphicon glyphicon-calendar"></span>
+										readonly>
+									<span class="input-group-addon">
+										<span class="glyphicon glyphicon-calendar"></span>
 									</span>
 
 								</div>
@@ -194,8 +237,8 @@
 	<!-- Foot begin -->
 	<div class="text-center text-muted"
 		style="height: 40px; width: 100%; bottom: 0; position: fixed; line-height: 40px; background-color: #eee">
-		<i class="glyphicon glyphicon-copyright-mark"></i> DHEE 2019
-		大連華信計算機新技術培訓中心. すべての知る権利を保留
+		<i class="glyphicon glyphicon-copyright-mark"></i>
+		DHEE 2019 大連華信計算機新技術培訓中心. すべての知る権利を保留
 	</div>
 
 	<!-- Foot End -->

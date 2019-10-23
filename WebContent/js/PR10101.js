@@ -598,6 +598,17 @@ function issuePR10101() {
 		alert("顧客コードを入力してください");
 	}
 
+	var tr = $("#injectionTable tbody tr");
+	for (var i = 0; i < tr.length; i++) {
+		if (tr[i].cells[7].firstChild.checked) {
+			// alert("zk");
+			if (Number(tr[i].cells[5].innerHTML) < Number(tr[i].cells[6].innerHTML)) {
+				ok = 0;
+				alert("商品は在庫量不足です");
+			}
+		}
+	}
+
 	if (ok == 1) {
 
 		var textDate = $("#date").val();
@@ -640,7 +651,14 @@ function issuePR10101() {
 					alert(data.message);
 				}
 				if (data.result) {
-					$("#injectionTable tbody").empty();
+					var tr = $("#injectionTable tbody tr");
+					for (var i = 0; i < tr.length; i++) {
+						if (tr[i].cells[7].firstChild.checked) {
+							var last = Number(tr[i].cells[5].innerHTML) - Number(tr[i].cells[6].innerHTML);
+							tr[i].cells[5].innerHTML = last;
+						}
+					}
+
 					let con = confirm('Excelテーブルを生成しますか');
 					if (con == true) {
 						window.location.href = "issueExcel.action";

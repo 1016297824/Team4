@@ -83,7 +83,7 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"
 							aria-expanded="false">
 							<i class="glyphicon glyphicon-user"></i>
-							<span>DHEE</span>
+							<span>${userName }</span>
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
