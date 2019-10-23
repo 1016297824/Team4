@@ -137,7 +137,7 @@
 											<button type="submit" class="btn btn-primary btn-sm"
 												data-toggle="modal" data-target="#goodsModal"
 												id="MakeRequestView" name="MakeRequestView">作成</button>
-											<button type="submit" class="btn btn-default btn-sm">クリア</button>
+											<button type="reset" class="btn btn-default btn-sm">クリア</button>
 
 										</div>
 									</div>
