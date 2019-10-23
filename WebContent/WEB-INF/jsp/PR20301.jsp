@@ -24,13 +24,26 @@
 <body>
 	<!-- 用来保存请求额的合计n -->
 	<input type="hidden" id="hiddensum" name="hiddensum" value="" />
+	<!-- Hidden -->
+	<table id="hiddenCustomerTable" style="display: none;">
+		<thead>
+			<tr>
+				<th style="text-align: center;">選択</th>
+				<th style="text-align: center;">顧客コード</th>
+				<th style="text-align: center;">顧客名</th>
+				<th style="text-align: center;">信用限度額</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
 
 	<!-- Top Begin -->
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container">
 			<!-- Title Begin -->
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#"> <b>華信商会(株) 販売管理業務システム</b>
+				<a class="navbar-brand" href="#">
+					<b>華信商会(株) 販売管理業務システム</b>
 				</a>
 			</div>
 			<!-- Title End -->
@@ -38,35 +51,64 @@
 			<!-- Menu Begin -->
 			<div>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="aPR10101.action">首頁</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" aria-expanded="false"> <span>受注管理</span>
+					<li>
+						<a href="aPR10101.action">首頁</a>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"
+							aria-expanded="false">
+							<span>受注管理</span>
 							<span class="caret"></span>
-					</a>
+						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="aPR10101.action">受注入力</a></li>
-							<li><a href="aPR10201.action">商品別出庫表作成</a></li>
-							<li><a href="aPR10301.action">顧客別受注実績月報作成</a></li>
-							<li><a href="aPR10401.action">商品別受注実績月報作成</a></li>
-							<li><a href="aPR10501.action">在庫情報確認</a></li>
-						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" aria-expanded="false"> <span>売掛管理</span>
+							<li>
+								<a href="aPR10101.action">受注入力</a>
+							</li>
+							<li>
+								<a href="aPR10201.action">商品別出庫表作成</a>
+							</li>
+							<li>
+								<a href="aPR10301.action">顧客別受注実績月報作成</a>
+							</li>
+							<li>
+								<a href="aPR10401.action">商品別受注実績月報作成</a>
+							</li>
+							<li>
+								<a href="aPR10501.action">在庫情報確認</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"
+							aria-expanded="false">
+							<span>売掛管理</span>
 							<span class="caret"></span>
-					</a>
+						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="aPR20101.action">売掛登録</a></li>
-							<li><a href="aPR20201.action">代金請求</a></li>
-							<li><a href="aPR20301.action">入金登録</a></li>
-						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" aria-expanded="false"> <i
-							class="glyphicon glyphicon-user"></i> <span>${userName}</span> <span
-							class="caret"></span>
-					</a>
+							<li>
+								<a href="aPR20101.action">売掛登録</a>
+							</li>
+							<li>
+								<a href="aPR20201.action">代金請求</a>
+							</li>
+							<li>
+								<a href="aPR20301.action">入金登録</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"
+							aria-expanded="false">
+							<i class="glyphicon glyphicon-user"></i>
+							<span>${userName}</span>
+							<span class="caret"></span>
+						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="alogin.action">退出</a></li>
-						</ul></li>
+							<li>
+								<a href="alogin.action">退出</a>
+							</li>
+						</ul>
+					</li>
 					<li></li>
 				</ul>
 			</div>
@@ -102,12 +144,14 @@
 								<div class="row">
 									<div class="col-md-4">
 										<div class="input-group">
-											<span class="input-group-addon">顧客コード</span> <input
-												type="text" class="form-control" name="m00101" id="m00101"
-												autofocus> <span class="input-group-addon"> <a
-												href="#" data-toggle="modal" data-target="#customerModal"
-												id="selall"> <span class="glyphicon glyphicon-search"></span>
-											</a>
+											<span class="input-group-addon">顧客コード</span>
+											<input type="text" class="form-control" name="m00101"
+												id="m00101" autofocus>
+											<span class="input-group-addon">
+												<a href="#" data-toggle="modal" data-target="#customerModal"
+													id="selall">
+													<span class="glyphicon glyphicon-search"></span>
+												</a>
 											</span>
 										</div>
 										<br>
@@ -145,12 +189,12 @@
 						<div class="row">
 							<div class="col-md-4">
 								<div class="input-group date form_date">
-									<span class="input-group-addon">入金日付（省略時今日）</span> <input
-										type="text" class="form-control"
+									<span class="input-group-addon">入金日付（省略時今日）</span>
+									<input type="text" class="form-control"
 										value="<%=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())%>"
-										name="pr20301date" id="pr20301date" readonly> <span
-										class="input-group-addon"> <span
-										class="glyphicon glyphicon-calendar"></span>
+										name="pr20301date" id="pr20301date" readonly>
+									<span class="input-group-addon">
+										<span class="glyphicon glyphicon-calendar"></span>
 									</span>
 								</div>
 								<br>
@@ -166,8 +210,9 @@
 									<th style="text-align: center;">請求書コード</th>
 									<th style="text-align: center;">請求書日付</th>
 									<th style="text-align: center;">請求額</th>
-									<th style="text-align: center;"><input type="checkbox"
-										name="checkbox" id="checkbox" /></th>
+									<th style="text-align: center;">
+										<input type="checkbox" name="checkbox" id="checkbox" />
+									</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -201,8 +246,9 @@
 							<div class="row">
 								<div class="col-md-6" align="left">
 									<div class="input-group">
-										<span class="input-group-addon">顧客名</span> <input type="text"
-											class="form-control" name="m00103" id="m00103" autofocus>
+										<span class="input-group-addon">顧客名</span>
+										<input type="text" class="form-control" name="m00103"
+											id="m00103" autofocus>
 									</div>
 									<br>
 									<p id="m00103Message" style="color: red;"></p>
@@ -213,7 +259,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="panel-body">
+						<div class="panel-body" id="pageCustomer">
 							<table class="table table-bordered" id="customerTable">
 								<thead>
 									<tr>
@@ -229,17 +275,27 @@
 							</table>
 							<nav class="page">
 								<ul class="pagination">
-									<li class="disabled"><a href="#" aria-label="Previous">
-											<span aria-hidden="true">«</span>
-									</a></li>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#" aria-label="Next"> <span
-											aria-hidden="true">»</span>
-									</a></li>
+									<li>
+										<a href="#">« </a>
+									</li>
+									<li>
+										<a href="#">1</a>
+									</li>
+									<li>
+										<a href="#">2</a>
+									</li>
+									<li>
+										<a href="#">3</a>
+									</li>
+									<li>
+										<a href="#">4</a>
+									</li>
+									<li>
+										<a href="#">5</a>
+									</li>
+									<li>
+										<a href="#">»</a>
+									</li>
 								</ul>
 							</nav>
 						</div>
@@ -252,8 +308,8 @@
 	<!-- Foot begin -->
 	<div class="text-center text-muted"
 		style="height: 40px; width: 100%; bottom: 0; position: fixed; line-height: 40px; background-color: #eee">
-		<i class="glyphicon glyphicon-copyright-mark"></i> DHEE 2019
-		大連華信計算機新技術培訓中心. すべての知る権利を保留
+		<i class="glyphicon glyphicon-copyright-mark"></i>
+		DHEE 2019 大連華信計算機新技術培訓中心. すべての知る権利を保留
 	</div>
 
 	<!-- Foot End -->
@@ -341,14 +397,74 @@
 						data : {},
 						async : true,
 						success : function(data) {
-							$("#customerTable").empty();
+							$("#hiddenCustomerTable tbody").empty();
 							$.each(data.selalllist, function(key, val) {
 
-								$("#customerTable").append(
+								$("#hiddenCustomerTable tbody").append(
 										'<tr>' + '<td style="text-align: center;">' + '<a href="#" data-dismiss="modal" onclick="customerClick(' + val.m00101 + ')">'
 												+ '<span class="glyphicon glyphicon-check"></span>' + '</a>' + '</td>' + '<td style="text-align: center;">' + val.m00101 + '</td>'
 												+ '<td style="text-align: left;">' + val.m00103 + '</td>' + '<td style="text-align: right;">' + val.m00110 + '</td>' + '</tr>');
 							});
+
+							var ina = $(this).html();
+							var htr = $("#hiddenCustomerTable tbody tr");
+							var len = Number(htr.length);
+							var page = Math.ceil(len / 5);
+							var li = $("#pageCustomer ul li");
+							var a = $("#pageCustomer ul a");
+							a.css('display', 'block');
+							if (page <= 5) {
+								var n = 1;
+								var end = 5 * n;
+								var start = end - 5;
+								$("#customerTable tbody").empty();
+								for (var i = start; i < end; i++) {
+									var tr = htr.eq(i).clone();
+									$("#customerTable tbody").append(tr);
+								}
+								a.css('display', 'none');
+								for (var i = 0; i < page + 2; i++) {
+									li.eq(i).removeClass("active");
+									if (i == 0) {
+										a.eq(i).html("«");
+										a.eq(i).css('display', 'block');
+									} else if (i == page + 1) {
+										a.eq(i).html("»");
+										a.eq(i).css('display', 'block');
+									} else if (i == n) {
+										li.eq(i).attr("class", "active");
+										a.eq(i).html(i);
+										a.eq(i).css('display', 'block');
+									} else {
+										if (i <= page) {
+											a.eq(i).html(i);
+											a.eq(i).css('display', 'block');
+										}
+									}
+								}
+							} else {
+								var n = 1;
+								var end = 5 * n;
+								var start = end - 5;
+								$("#customerTable tbody").empty();
+								for (var i = start; i < end; i++) {
+									var tr = htr.eq(i).clone();
+									$("#customerTable tbody").append(tr);
+								}
+								for (var i = 0; i < 7; i++) {
+									li.eq(i).removeClass("active");
+									if (i == 0) {
+										a.eq(i).html("«");
+									} else if (i == 6) {
+										a.eq(i).html("»");
+									} else if (i == 1) {
+										li.eq(i).attr("class", "active");
+										a.eq(i).html(i);
+									} else {
+										a.eq(i).html(i);
+									}
+								}
+							}
 						}
 
 					});
@@ -365,15 +481,75 @@
 						data : "m00103=" + m00103,
 						async : true,
 						success : function(data) {
-							$("#customerTable tbody").empty();
+							$("#hiddenCustomerTable tbody").empty();
 							$.each(data.selonelist, function(key, val) {
-								$("#customerTable tbody").append(
+								$("#hiddenCustomerTable tbody").append(
 										'<tr>' + '<td style="text-align: center;">' + '<a href="#" data-dismiss="modal" onclick="customerClick(' + val.m00101 + ')">'
 												+ '<span class="glyphicon glyphicon-check"></span>' + '</a>' + '</td>' + '<td style="text-align: center;">' + val.m00101 + '</td>'
 												+ '<td style="text-align: left;">' + val.m00103 + '</td>' + '<td style="text-align: right;">' + val.m00110 + '</td>' + '</tr>');
 							});
 							if (data.m00103Message != null) {
 								$("#m00103Message").html(data.m00103Message);
+							}
+
+							var ina = $(this).html();
+							var htr = $("#hiddenCustomerTable tbody tr");
+							var len = Number(htr.length);
+							var page = Math.ceil(len / 5);
+							var li = $("#pageCustomer ul li");
+							var a = $("#pageCustomer ul a");
+							a.css('display', 'block');
+							if (page <= 5) {
+								var n = 1;
+								var end = 5 * n;
+								var start = end - 5;
+								$("#customerTable tbody").empty();
+								for (var i = start; i < end; i++) {
+									var tr = htr.eq(i).clone();
+									$("#customerTable tbody").append(tr);
+								}
+								a.css('display', 'none');
+								for (var i = 0; i < page + 2; i++) {
+									li.eq(i).removeClass("active");
+									if (i == 0) {
+										a.eq(i).html("«");
+										a.eq(i).css('display', 'block');
+									} else if (i == page + 1) {
+										a.eq(i).html("»");
+										a.eq(i).css('display', 'block');
+									} else if (i == n) {
+										li.eq(i).attr("class", "active");
+										a.eq(i).html(i);
+										a.eq(i).css('display', 'block');
+									} else {
+										if (i <= page) {
+											a.eq(i).html(i);
+											a.eq(i).css('display', 'block');
+										}
+									}
+								}
+							} else {
+								var n = 1;
+								var end = 5 * n;
+								var start = end - 5;
+								$("#customerTable tbody").empty();
+								for (var i = start; i < end; i++) {
+									var tr = htr.eq(i).clone();
+									$("#customerTable tbody").append(tr);
+								}
+								for (var i = 0; i < 7; i++) {
+									li.eq(i).removeClass("active");
+									if (i == 0) {
+										a.eq(i).html("«");
+									} else if (i == 6) {
+										a.eq(i).html("»");
+									} else if (i == 1) {
+										li.eq(i).attr("class", "active");
+										a.eq(i).html(i);
+									} else {
+										a.eq(i).html(i);
+									}
+								}
 							}
 						}
 					});
@@ -444,12 +620,221 @@
 												'<tr>' + '<td style="text-align: left; padding-left: 5PX;">' + '<br>' + "登録後売掛残高 ：" + '</td>'
 														+ '<td style="text-align: left; padding-left: 5PX;">' + '<br>' + val.m00112 + '</td>' + '</tr>');
 									});
-								alert("入金額をすでに登録しました。");
+									alert("入金額をすでに登録しました。");
 								}
 							});
 						}
 					}
 				});
+
+		$("#pageCustomer ul a").click(function() {
+			var ina = $(this).html();
+			var htr = $("#hiddenCustomerTable tbody tr");
+			var len = Number(htr.length);
+			var page = Math.ceil(len / 5);
+			var li = $("#pageCustomer ul li");
+			var a = $("#pageCustomer ul a");
+			if (ina == "«") {
+				if (page <= 5) {
+					var n = 1;
+					var end = 5 * n;
+					var start = end - 5;
+					$("#customerTable tbody").empty();
+					for (var i = start; i < end; i++) {
+						var tr = htr.eq(i).clone();
+						$("#customerTable tbody").append(tr);
+					}
+					a.css('display', 'none');
+					for (var i = 0; i < page + 2; i++) {
+						li.eq(i).removeClass("active");
+						if (i == 0) {
+							a.eq(i).html("«");
+							a.eq(i).css('display', 'block');
+						} else if (i == page + 1) {
+							a.eq(i).html("»");
+							a.eq(i).css('display', 'block');
+						} else if (i == n) {
+							li.eq(i).attr("class", "active");
+							a.eq(i).html(i);
+							a.eq(i).css('display', 'block');
+						} else {
+							if (i <= page) {
+								a.eq(i).html(i);
+								a.eq(i).css('display', 'block');
+							}
+						}
+					}
+				} else {
+					var n = 1;
+					var end = 5 * n;
+					var start = end - 5;
+					$("#customerTable tbody").empty();
+					for (var i = start; i < end; i++) {
+						var tr = htr.eq(i).clone();
+						$("#customerTable tbody").append(tr);
+					}
+					for (var i = 0; i < 7; i++) {
+						li.eq(i).removeClass("active");
+						if (i == 0) {
+							a.eq(i).html("«");
+						} else if (i == 6) {
+							a.eq(i).html("»");
+						} else if (i == 1) {
+							li.eq(i).attr("class", "active");
+							a.eq(i).html(i);
+						} else {
+							a.eq(i).html(i);
+						}
+					}
+				}
+			} else if (ina == "»") {
+				if (page <= 5) {
+					var n = page;
+					var end = 5 * n;
+					var start = end - 5;
+					$("#customerTable tbody").empty();
+					for (var i = start; i < end; i++) {
+						var tr = htr.eq(i).clone();
+						$("#customerTable tbody").append(tr);
+					}
+					a.css('display', 'none');
+					for (var i = 0; i < page + 2; i++) {
+						li.eq(i).removeClass("active");
+						if (i == 0) {
+							a.eq(i).html("«");
+							a.eq(i).css('display', 'block');
+						} else if (i == page + 1) {
+							a.eq(i).html("»");
+							a.eq(i).css('display', 'block');
+						} else if (i == n) {
+							li.eq(i).attr("class", "active");
+							a.eq(i).html(i);
+							a.eq(i).css('display', 'block');
+						} else {
+							if (i <= page) {
+								a.eq(i).html(i);
+								a.eq(i).css('display', 'block');
+							}
+						}
+					}
+				} else {
+					var n = page;
+					var end = 5 * n;
+					var start = end - 5;
+					$("#customerTable tbody").empty();
+					for (var i = start; i < end; i++) {
+						var tr = htr.eq(i).clone();
+						$("#customerTable tbody").append(tr);
+					}
+					for (var i = 0; i < 7; i++) {
+						li.eq(i).removeClass("active");
+						if (i == 0) {
+							a.eq(i).html("«");
+						} else if (i == 6) {
+							a.eq(i).html("»");
+						} else {
+							a.eq(i).html(page - 5 + i);
+						}
+					}
+					li.eq(5).attr("class", "active");
+				}
+			} else {
+				var n = Number(ina);
+				if (page <= 5) {
+					var end = 5 * n;
+					var start = end - 5;
+					$("#customerTable tbody").empty();
+					for (var i = start; i < end; i++) {
+						var tr = htr.eq(i).clone();
+						$("#customerTable tbody").append(tr);
+					}
+					a.css('display', 'none');
+					for (var i = 0; i < page + 2; i++) {
+						li.eq(i).removeClass("active");
+						if (i == 0) {
+							a.eq(i).html("«");
+							a.eq(i).css('display', 'block');
+						} else if (i == page + 1) {
+							a.eq(i).html("»");
+							a.eq(i).css('display', 'block');
+						} else if (i == n) {
+							li.eq(i).attr("class", "active");
+							a.eq(i).html(i);
+							a.eq(i).css('display', 'block');
+						} else {
+							if (i <= page) {
+								a.eq(i).html(i);
+								a.eq(i).css('display', 'block');
+							}
+						}
+					}
+				} else {
+					if (n <= 2) {
+						var end = 5 * n;
+						var start = end - 5;
+						$("#customerTable tbody").empty();
+						for (var i = start; i < end; i++) {
+							var tr = htr.eq(i).clone();
+							$("#customerTable tbody").append(tr);
+						}
+						for (var i = 0; i < 7; i++) {
+							li.eq(i).removeClass("active");
+							if (i == 0) {
+								a.eq(i).html("«");
+							} else if (i == 6) {
+								a.eq(i).html("»");
+							} else if (i == n) {
+								li.eq(i).attr("class", "active");
+								a.eq(i).html(i);
+							} else {
+							}
+						}
+					} else if (n >= page - 2) {
+						var end = 5 * n;
+						var start = end - 5;
+						$("#customerTable tbody").empty();
+						for (var i = start; i < end; i++) {
+							var tr = htr.eq(i).clone();
+							$("#customerTable tbody").append(tr);
+						}
+						for (var i = 0; i < 7; i++) {
+							li.eq(i).removeClass("active");
+							if (i == 0) {
+								a.eq(i).html("«");
+							} else if (i == 6) {
+								a.eq(i).html("»");
+							} else {
+								a.eq(i).html(page - 5 + i);
+								if (Number(a.eq(i).html()) == n) {
+									li.eq(i).attr("class", "active");
+								}
+							}
+						}
+					} else {
+						var end = 5 * n;
+						var start = end - 5;
+						$("#customerTable tbody").empty();
+						for (var i = start; i < end; i++) {
+							var tr = htr.eq(i).clone();
+							$("#customerTable tbody").append(tr);
+						}
+						for (var i = 0; i < 7; i++) {
+							li.eq(i).removeClass("active");
+							if (i == 0) {
+								a.eq(i).html("«");
+							} else if (i == 6) {
+								a.eq(i).html("»");
+							} else if (i == 3) {
+								li.eq(i).attr("class", "active");
+								a.eq(i).html(n);
+							} else {
+								a.eq(i).html(n - 3 + i);
+							}
+						}
+					}
+				}
+			}
+		});
 	</script>
 
 </body>

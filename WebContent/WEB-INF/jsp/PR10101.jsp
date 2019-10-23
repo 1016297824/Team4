@@ -53,16 +53,6 @@
 		</thead>
 		<tbody></tbody>
 	</table>
-	<nav id="hiddenNav" style="display: none;">
-		<ul>
-			<li>
-				<a href="#"></a>
-			</li>
-			<li class="active">
-				<a href="#"></a>
-			</li>
-		</ul>
-	</nav>
 
 	<!-- Top Begin -->
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
