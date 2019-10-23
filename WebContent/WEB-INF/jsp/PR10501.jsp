@@ -96,7 +96,7 @@
 				</ul>
 			</div>
 			<!-- Menu End -->
-			
+
 		</div>
 	</div>
 	<!-- Top End -->
@@ -107,41 +107,43 @@
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-12">
-					<form action="m002search.action" method="post">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<div class="row">
-									<div class="col-md-6" align="left">
-										<font style="font-size: 14px; line-height: 29px;">在庫情報確認</font>
-									</div>
-									<div class="col-md-6" align="right">
-										<button type="submit" class="btn btn-primary btn-sm" id="searchm005"
-											data-toggle="modal" data-target="#goodsModal">確認</button>
-										<button type="submit" class="btn btn-default btn-sm"
-										onclick="window.location.href = 'aPR10501.action'">クリア</button>
-									</div>
-								</div>
-							</div>
-							<div class="panel-body">
-								<div class="row">
-									<div class="col-md-4">
-										<div class="input-group">
-											<span class="input-group-addon">商品コード</span>
-											<input type="text" class="form-control" name="m0050" id="m0050" placeholder="请输入商品コード" autofocus >
+						<form action="m002search.action" method="post">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-md-6" align="left">
+											<font style="font-size: 14px; line-height: 29px;">在庫情報確認</font>
 										</div>
-										<p id="userMessage" style="color:red;"></p>
+										<div class="col-md-6" align="right">
+											<button type="submit" class="btn btn-primary btn-sm"
+												id="searchm005" data-toggle="modal"
+												data-target="#goodsModal">確認</button>
+											<button type="submit" class="btn btn-default btn-sm"
+												onclick="window.location.href = 'aPR10501.action'">クリア</button>
+										</div>
 									</div>
-								<c:forEach var="m002" items="${m002list}">
 								</div>
-								<hr>
-								<br>
-								在庫数 ：${m002.m00207}
-								<br>
-								<br>
-								商品名 ：${m002.m00202}
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-md-4">
+											<div class="input-group">
+												<span class="input-group-addon">商品コード</span>
+												<input type="text" class="form-control" name="m0050"
+													id="m0050" placeholder="请输入商品コード" autofocus>
+											</div>
+											<p id="userMessage" style="color: red;"></p>
+										</div>
+										<c:forEach var="m002" items="${m002list}">
+									</div>
+									<hr>
+									<br>
+									在庫数 ：${m002.m00207}
+									<br>
+									<br>
+									商品名 ：${m002.m00202}
 								</div>
 								</c:forEach>
-						</div>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -171,50 +173,55 @@
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/js/echarts.min.js"></script>
 	<script type="text/javascript">
-	//入力する文字の個数を制限します
-	$("#m0050").bind("input propertychange", function() {
-		var text = $("#m0050").val();
-		var textlen = $("#m0050").val().length;
-		if (textlen > 5) {
-			//alert("weishu");
-			$("#userMessage").html("商品コード欄に5桁を入力してください");
-			var lenText = text.substring(0, 5);
-			$("#m0050").val(lenText);
-		}
-	});
-	$("#m0050").keyup(function() {
-		//強制入力タイプは半角文字です
-		var str = $(this).val();
-		//alert(str + "2");
-		var result = "";
-		for (var i = 0; i < str.length; i++) {
-			if (str.charCodeAt(i) == 12288) {
-				//alert("?");
-				result += String.fromCharCode(str.charCodeAt(i) - 12256);
-				continue;
-			}
-			if (str.charCodeAt(i) > 65280 && str.charCodeAt(i) < 65375) {
-				//alert("?");
-				$("#userMessage").html("商品コード欄に半角数字を入力してください");
-				//result += String.fromCharCode(str.charCodeAt(i) - 65248);
-				result += "";
+		// 入力する文字の個数を制限します
+		$("#m0050").bind("input propertychange", function() {
+			// alert("bind");
+			var text = $("#m0050").val();
+			var textlen = $("#m0050").val().length;
+			if (textlen > 5) {
+				// alert("weishu");
+				$("#userMessage").html("商品コード欄に5桁を入力してください");
+				var lenText = text.substring(0, 5);
+				$("#m0050").val(lenText);
 			} else {
-				//alert("?");
-				//$("#userMessage").html("担当者コード欄に半角数字を入力してください");
-				result += String.fromCharCode(str.charCodeAt(i));
+				$("#userMessage").html("");
 			}
-		}
-		$(this).val(result);
+		});
 
-		//強制入力タイプは数字です
-		var c = $(this);
-		//alert(c.val() + "1");
-		if (/[^\d]/.test(c.val())) {
-			$("#userMessage").html("担当者コード欄に半角数字を入力してください");
-			var temp = c.val().replace(/[^\d]/g, '');
-			$(this).val(temp);
-		}
-	});
+		$("#m0050").keyup(function() {
+			// alert("keyup");
+			// 強制入力タイプは半角文字です
+			var str = $(this).val();
+			// alert(str + "2");
+			var result = "";
+			for (var i = 0; i < str.length; i++) {
+				if (str.charCodeAt(i) == 12288) {
+					// alert("?");
+					result += String.fromCharCode(str.charCodeAt(i) - 12256);
+					continue;
+				}
+				if (str.charCodeAt(i) > 65280 && str.charCodeAt(i) < 65375) {
+					// alert("?");
+					$("#userMessage").html("商品コード欄に半角数字を入力してください");
+					// result += String.fromCharCode(str.charCodeAt(i) - 65248);
+					result += "";
+				} else {
+					// alert("?");
+					// $("#userMessage").html("担当者コード欄に半角数字を入力してください");
+					result += String.fromCharCode(str.charCodeAt(i));
+				}
+			}
+			$(this).val(result);
+
+			// 強制入力タイプは数字です
+			var c = $(this);
+			// alert(c.val() + "1");
+			if (/[^\d]/.test(c.val())) {
+				$("#userMessage").html("商品コード欄に半角数字を入力してください");
+				var temp = c.val().replace(/[^\d]/g, '');
+				$(this).val(temp);
+			}
+		});
 	</script>
 </body>
 </html>
